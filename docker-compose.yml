@@ -1,0 +1,16 @@
+services:
+  infisical:
+    image: infisical/infisical:latest
+
+    container_name: infisical
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "8080:8080"
+
+    command: >
+      ./standalone-entrypoint.sh
