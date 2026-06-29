@@ -12,5 +12,15 @@ services:
     ports:
       - "8080:8080"
 
-    command: >
-      ./standalone-entrypoint.sh
+    command:
+      - ./standalone-entrypoint.sh
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --spider --quiet http://localhost:8080/api/status || exit 1"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
